@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mohamed Abdelillah OURAOU — Backend engineer and CS student at USTHB. I build systems that fit real problems and care deeply about correctness." />
+  <title>MAO — Portfolio</title>
+
+  <!-- ================================================
+       Fonts: Space Grotesk (display) + JetBrains Mono (code)
+       ================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================================================
+       PAGE LOADER — full-screen overlay
+       ================================================ -->
+  <div id="loader" aria-hidden="true">
+    <span class="loader__text">MAO</span>
+  </div>
+
+  <!-- ================================================
+       CUSTOM CURSOR (desktop only, hidden on touch)
+       ================================================ -->
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ================================================
+       NAVIGATION
+       ================================================ -->
+  <header class="nav" role="banner">
+    <nav class="nav__inner" aria-label="Primary navigation">
+
+      <!-- Logo -->
+      <a href="#hero" class="nav__logo" aria-label="MAO — back to top">MAO</a>
+
+      <!-- Desktop links -->
+      <ul class="nav__links" role="list">
+        <li><a href="#about"    class="nav__link" data-section="about">About</a></li>
+        <li><a href="#skills"   class="nav__link" data-section="skills">Skills</a></li>
+        <li><a href="#projects" class="nav__link" data-section="projects">Projects</a></li>
+        <li><a href="#contact"  class="nav__link" data-section="contact">Contact</a></li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="nav__burger"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+      >
+        <span class="nav__burger-line"></span>
+        <span class="nav__burger-line"></span>
+        <span class="nav__burger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile drawer -->
+    <div class="nav__mobile" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <ul class="nav__mobile-links" role="list">
+        <li><a href="#about"    class="nav__mobile-link">About</a></li>
+        <li><a href="#skills"   class="nav__mobile-link">Skills</a></li>
+        <li><a href="#projects" class="nav__mobile-link">Projects</a></li>
+        <li><a href="#contact"  class="nav__mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================================================
+         HERO
+         ================================================ -->
+    <section class="hero" id="hero" aria-labelledby="hero-name">
+
+      <!-- Particle canvas -->
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Ambient background orbs -->
+      <div class="hero__orbs" aria-hidden="true">
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__orb hero__orb--3"></div>
+      </div>
+
+      <div class="hero__content">
+
+        <!-- Avatar -->
+        <div class="hero__avatar" aria-hidden="true">
+          <span class="hero__avatar-initials">MAO</span>
+        </div>
+
+        <!-- Name -->
+        <h1 class="hero__name" id="hero-name">
+          <span class="hero__name-first">Mohamed Abdelillah</span>
+          <span class="hero__name-last">OURAOU</span>
+        </h1>
+
+        <!-- Typing animation -->
+        <p class="hero__role" aria-live="polite">
+          <span class="hero__role-text" id="typing-target"></span>
+          <span class="hero__cursor" aria-hidden="true">|</span>
+        </p>
+
+        <!-- Subtitle -->
+        <p class="hero__subtitle">
+          CS student at USTHB. I ship real projects outside coursework —
+          systems built for actual clients, not just passing grades.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="hero__cta">
+          <a href="#projects" class="btn btn--primary" data-magnetic>View Projects</a>
+          <a href="#contact"  class="btn btn--ghost"   data-magnetic>Contact Me</a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll-indicator" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         ABOUT
+         ================================================ -->
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <span class="section__label reveal">About</span>
+        <h2 class="section__heading reveal reveal--delay-1" id="about-heading" data-scramble>
+          Correctness over<br />convenience.
+        </h2>
+        <div class="about__body">
+          <p class="about__para reveal reveal--delay-2">
+            Software engineering student at USTHB, focused on backend systems,
+            distributed infrastructure, and applied ML. Most of my projects come from
+            actual problems — an enterprise reporting system built during an internship,
+            a fault prediction model built to real research constraints, a compiler built
+            to understand the fundamentals rather than to check a box.
+          </p>
+          <p class="about__para reveal reveal--delay-3">
+            I get fixated on correctness. When code works but I don't understand why,
+            that's a bug I haven't surfaced yet. That instinct is why I've worked across
+            compilers, ML optimization, and backend APIs — each domain teaches me
+            something the others don't.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         STATS ROW
+         ================================================ -->
+    <section class="stats" aria-label="Statistics">
+      <div class="container">
+        <div class="stats__grid">
+
+          <div class="stat reveal">
+            <span class="stat__number" data-target="8" data-suffix="+">8+</span>
+            <span class="stat__label">Repos shipped</span>
+          </div>
+
+          <div class="stat reveal reveal--delay-1">
+            <span class="stat__number" data-target="4" data-suffix="">4</span>
+            <span class="stat__label">Languages</span>
+          </div>
+
+          <div class="stat reveal reveal--delay-2">
+            <span class="stat__number" data-target="3" data-suffix="">3</span>
+            <span class="stat__label">Frameworks</span>
+          </div>
+
+          <div class="stat reveal reveal--delay-3">
+            <span class="stat__number" data-target="1" data-suffix="">1</span>
+            <span class="stat__label">Production deployment</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         MARQUEE STRIP — tech keyword ticker
+         ================================================ -->
+    <div class="marquee-strip" aria-hidden="true" role="presentation">
+      <div class="marquee__track">
+        <!-- First set -->
+        <span class="marquee__item">Python</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Java</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">C</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">PHP</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Django</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">React</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Laravel</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">PostgreSQL</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Git</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Linux</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Machine Learning</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">SVM</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Distributed Systems</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">REST APIs</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Flex</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Bison</span>
+        <span class="marquee__sep">·</span>
+        <!-- Duplicate for seamless infinite loop -->
+        <span class="marquee__item">Python</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Java</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">C</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">PHP</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Django</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">React</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Laravel</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">PostgreSQL</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Git</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Linux</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Machine Learning</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">SVM</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Distributed Systems</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">REST APIs</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Flex</span>
+        <span class="marquee__sep">·</span>
+        <span class="marquee__item">Bison</span>
+        <span class="marquee__sep">·</span>
+      </div>
+    </div>
+
+    <!-- ================================================
+         SKILLS
+         ================================================ -->
+    <section class="section skills" id="skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <span class="section__label reveal">Stack</span>
+        <h2 class="section__heading reveal reveal--delay-1" id="skills-heading">
+          Tools of the trade.
+        </h2>
+
+        <div class="skills__grid">
+
+          <!-- Languages -->
+          <article class="card skills__card reveal reveal--delay-2" data-tilt aria-label="Languages">
+            <div class="card__icon" aria-hidden="true">{ }</div>
+            <h3 class="card__title">Languages</h3>
+            <ul class="skills__list" role="list">
+              <li class="skills__item">Python</li>
+              <li class="skills__item">Java</li>
+              <li class="skills__item">C</li>
+              <li class="skills__item">PHP</li>
+            </ul>
+          </article>
+
+          <!-- Frameworks -->
+          <article class="card skills__card reveal reveal--delay-3" data-tilt aria-label="Frameworks">
+            <div class="card__icon" aria-hidden="true">&#x2B21;</div>
+            <h3 class="card__title">Frameworks</h3>
+            <ul class="skills__list" role="list">
+              <li class="skills__item">Django</li>
+              <li class="skills__item">React</li>
+              <li class="skills__item">Laravel</li>
+            </ul>
+          </article>
+
+          <!-- Tools -->
+          <article class="card skills__card reveal reveal--delay-4" data-tilt aria-label="Tools">
+            <div class="card__icon" aria-hidden="true">&#x2699;</div>
+            <h3 class="card__title">Tools</h3>
+            <ul class="skills__list" role="list">
+              <li class="skills__item">Git</li>
+              <li class="skills__item">Linux</li>
+              <li class="skills__item">PostgreSQL</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         PROJECTS — Bento grid layout
+         ================================================ -->
+    <section class="section projects" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <span class="section__label reveal">Work</span>
+        <h2 class="section__heading reveal reveal--delay-1" id="projects-heading">
+          Selected projects.
+        </h2>
+
+        <div class="projects__bento">
+
+          <!-- Project 01 — full width -->
+          <article class="card project-card project-bento--large reveal reveal--delay-2" data-tilt aria-label="Project: Sonelgaz Reporting System">
+            <div class="project-card__left">
+              <span class="project-card__number" aria-hidden="true">01</span>
+              <div class="project-card__info">
+                <h3 class="project-card__title">Sonelgaz Reporting System</h3>
+                <p class="project-card__desc">
+                  Built during an internship for Sonelgaz — replaced a manual reporting
+                  process across energy infrastructure operations with a full-stack web
+                  platform now used in production.
+                </p>
+                <div class="project-card__tags" aria-label="Technologies used">
+                  <span class="tag">Django REST</span>
+                  <span class="tag">React</span>
+                  <span class="tag">PostgreSQL</span>
+                </div>
+              </div>
+            </div>
+            <!-- TODO: replace with your real URL -->
+            <a
+              href="https://github.com/yourusername/sonelgaz-reporting"
+              class="project-card__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Sonelgaz Reporting System on GitHub"
+            >
+              <svg class="project-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Project 02 — half width -->
+          <article class="card project-card project-bento--sm reveal reveal--delay-3" data-tilt aria-label="Project: Software Fault Prediction using ML">
+            <div class="project-card__left">
+              <span class="project-card__number" aria-hidden="true">02</span>
+              <div class="project-card__info">
+                <h3 class="project-card__title">Software Fault Prediction using ML</h3>
+                <p class="project-card__desc">
+                  Machine learning project that predicts software defects using optimized
+                  classification techniques and bio-inspired algorithms.
+                </p>
+                <div class="project-card__tags" aria-label="Technologies used">
+                  <span class="tag">SVM</span>
+                  <span class="tag">Grid Search</span>
+                  <span class="tag">Salp Swarm Algorithm</span>
+                </div>
+              </div>
+            </div>
+            <!-- TODO: replace with your real URL -->
+            <a
+              href="https://github.com/yourusername/fault-prediction-ml"
+              class="project-card__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Software Fault Prediction on GitHub"
+            >
+              <svg class="project-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Project 03 — half width -->
+          <article class="card project-card project-bento--sm reveal reveal--delay-4" data-tilt aria-label="Project: EasyCode Compiler">
+            <div class="project-card__left">
+              <span class="project-card__number" aria-hidden="true">03</span>
+              <div class="project-card__info">
+                <h3 class="project-card__title">EasyCode Compiler</h3>
+                <p class="project-card__desc">
+                  A custom programming language compiler built using lexical and syntax analysis
+                  tools — from tokens to parse trees.
+                </p>
+                <div class="project-card__tags" aria-label="Technologies used">
+                  <span class="tag">Flex</span>
+                  <span class="tag">Bison</span>
+                </div>
+              </div>
+            </div>
+            <!-- TODO: replace with your real URL -->
+            <a
+              href="https://github.com/yourusername/easycode-compiler"
+              class="project-card__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View EasyCode Compiler on GitHub"
+            >
+              <svg class="project-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         CONTACT
+         ================================================ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <span class="section__label reveal">Contact</span>
+        <h2 class="section__heading reveal reveal--delay-1" id="contact-heading">
+          Reach out.
+        </h2>
+        <p class="contact__intro reveal reveal--delay-2">
+          Open to collaborations, interesting problems, or just talking about systems and code.
+        </p>
+
+        <div class="contact__cards reveal reveal--delay-3">
+
+          <!-- GitHub -->
+          <!-- TODO: replace with your real GitHub URL -->
+          <a
+            href="https://github.com/yourusername"
+            class="card contact-card"
+            data-tilt
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile — github.com/yourusername"
+          >
+            <svg class="contact-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span class="contact-card__label">GitHub</span>
+            <span class="contact-card__handle">github.com/yourusername</span>
+          </a>
+
+          <!-- LinkedIn -->
+          <!-- TODO: replace with your real LinkedIn URL -->
+          <a
+            href="https://linkedin.com/in/yourusername"
+            class="card contact-card"
+            data-tilt
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile — linkedin.com/in/yourusername"
+          >
+            <svg class="contact-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            <span class="contact-card__label">LinkedIn</span>
+            <span class="contact-card__handle">linkedin.com/in/yourusername</span>
+          </a>
+
+          <!-- Email -->
+          <!-- TODO: replace with your real email -->
+          <a
+            href="mailto:email@example.com"
+            class="card contact-card"
+            data-tilt
+            aria-label="Send email to email@example.com"
+          >
+            <svg class="contact-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M2 7l10 7 10-7"/>
+            </svg>
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__handle">email@example.com</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p class="footer__copy">&#169; 2026 Mohamed Abdelillah OURAOU</p>
+      <p class="footer__built">Built with HTML, CSS, and JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
