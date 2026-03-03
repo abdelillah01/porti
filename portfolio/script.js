@@ -263,7 +263,7 @@
   (function animateRing() {
     ringX += (mouseX - ringX) * 0.1;
     ringY += (mouseY - ringY) * 0.1;
-    ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+    ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
     requestAnimationFrame(animateRing);
   })();
 
@@ -431,15 +431,14 @@
 
 /* ====================================================
    12. HERO ENTRANCE CHOREOGRAPHY
-   Staggered fade-in of avatar → name → role →
-   subtitle → CTAs. Synced to loaderExit event.
+   Staggered fade-in of name → role → subtitle → CTAs.
+   Synced to loaderExit event.
    Skipped if prefers-reduced-motion is set.
    ==================================================== */
 (function initHeroEntrance() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const targets = [
-    document.querySelector('.hero__avatar'),
     document.querySelector('.hero__name'),
     document.querySelector('.hero__role'),
     document.querySelector('.hero__subtitle'),
@@ -451,10 +450,10 @@
   // Hide all immediately (before first paint)
   targets.forEach((el) => {
     el.style.opacity   = '0';
-    el.style.transform = 'translateY(32px)';
+    el.style.transform = 'translateX(-24px)';
   });
 
-  const delays = [0, 180, 380, 530, 700]; // ms after loader exits
+  const delays = [0, 200, 380, 540]; // ms after loader exits
 
   function startEntrance() {
     targets.forEach((el, i) => {
@@ -581,56 +580,6 @@
 })();
 
 
-/* ====================================================
-   14. STATS COUNTERS
-   .stat__number elements count up from 0 to their
-   [data-target] value with cubic ease-out.
-   Special [data-infinite] elements display ∞ with a
-   pulse animation.
-   ==================================================== */
-(function initStats() {
-  const statEls = document.querySelectorAll('.stat__number');
-  if (!statEls.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        observer.unobserve(el);
-
-        // Infinity stat — just pulse in
-        if (el.dataset.infinite) {
-          el.textContent = '\u221E';
-          el.style.animation = 'stat-pop 0.6s var(--ease-out) both';
-          return;
-        }
-
-        const targetVal = parseInt(el.dataset.target, 10);
-        const suffix    = el.dataset.suffix || '';
-        if (isNaN(targetVal)) return;
-
-        const duration  = 1400;
-        const startTime = performance.now();
-
-        function update(now) {
-          const elapsed  = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          // Cubic ease-out
-          const eased    = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(eased * targetVal) + suffix;
-          if (progress < 1) requestAnimationFrame(update);
-        }
-
-        requestAnimationFrame(update);
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  statEls.forEach((el) => observer.observe(el));
-})();
-
 
 /* ====================================================
    15. SCROLL-DRIVEN PARALLAX
@@ -654,5 +603,23 @@
       // `translate` CSS property — doesn't conflict with `transform` animation
       orb.style.translate = `0 ${scrollY * rate}px`;
     });
+  }, { passive: true });
+})();
+
+
+/* ====================================================
+   SCROLL PROGRESS BAR
+   Fills a thin bar at the top of the page as the user
+   scrolls. Width = scrolled% of total scrollable height.
+   ==================================================== */
+(function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+
+  window.addEventListener('scroll', () => {
+    const scrolled   = window.scrollY;
+    const maxScroll  = document.documentElement.scrollHeight - window.innerHeight;
+    const pct        = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+    bar.style.width  = pct + '%';
   }, { passive: true });
 })();
